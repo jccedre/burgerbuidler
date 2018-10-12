@@ -16,7 +16,7 @@ const StyledBurger = styled.div`
     max-width: 500px;
   `}
 
-  
+
 
   ${props => props.theme.media.large`
     width: 700px;
@@ -25,11 +25,22 @@ const StyledBurger = styled.div`
 `;
 
 const burger = ( props ) => {
+  let transformedIngredients = Object.keys(props.ingredients)
+  .map(igKey => {
+    return [...Array(props.ingredients[igKey])].map((_, index) => {
+      return <BurgerIngredient key={igKey + index} type={igKey} />
+    });
+  }).reduce((arr, el) => {
+    return arr.concat(el);
+  }, []);
+
+  if (transformedIngredients.length === 0) {
+   transformedIngredients = <p>Please start adding ingredients!</p>;
+  }
   return (
     <StyledBurger>
       <BurgerIngredient type="bread-top"/>
-      <BurgerIngredient type="cheese"/>
-      <BurgerIngredient type="meat"/>
+        {transformedIngredients}
       <BurgerIngredient type="bread-bottom"/>
     </StyledBurger>
   );
