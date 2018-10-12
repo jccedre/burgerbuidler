@@ -10,9 +10,7 @@ class App extends Component {
       <ThemeProvider theme={main}>
         <div>
           <Layout>
-            <BurgerBuilder>
-              
-            </BurgerBuilder>
+            <BurgerBuilder />
           </Layout>
 
         </div>

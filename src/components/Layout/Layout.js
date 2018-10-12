@@ -4,14 +4,15 @@ import styled from 'styled-components';
 
 const StyledMain = styled.main`
   margin-top: 1em;
+  padding: 1em;
 `;
 
 const layout = ( props ) => (
   <Aux>
     <div>toolbar, sidedrawer, backdrop</div>
-    <main>
+    <StyledMain>
       {props.children}
-    </main>
+    </StyledMain>
   </Aux>
 );
 
