@@ -26,6 +26,7 @@ const StyledButton = styled.button`
   outline: none;
   background-color: ${props => (props.type === 'less') ? props.theme.colors.ruby : props.theme.colors.darkRaspberry};
   color: ${props => props.theme.colors.white};
+  transition: all 0.3s;
 
   &:disabled {
     background-color: ${props => props.theme.colors.darkRaspberryActive};
@@ -52,8 +53,14 @@ const buildControl = ( props ) => {
   return (
     <StyledBuildControl>
       <StyledLabel>{props.label}</StyledLabel>
-      <StyledButton disabled type={'less'}>Less</StyledButton>
-      <StyledButton type={'more'}>More</StyledButton>
+      <StyledButton
+        type={'less'}
+        onClick={props.removed}
+        disabled={props.disabled}>Less</StyledButton>
+      <StyledButton
+        type={'more'}
+        onClick={props.added}
+        >More</StyledButton>
     </StyledBuildControl>
   );
 }

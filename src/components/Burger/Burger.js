@@ -15,13 +15,6 @@ const StyledBurger = styled.div`
   ${props => props.theme.media.largeSmall`
     max-width: 500px;
   `}
-
-
-
-  ${props => props.theme.media.large`
-    width: 700px;
-    height: 600px;
-  `}
 `;
 
 const burger = ( props ) => {
