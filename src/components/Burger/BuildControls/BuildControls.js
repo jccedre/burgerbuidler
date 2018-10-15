@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BuildControl from './BuildControl/BuildControl';
+import Button from '../../UI/Button/Button';
 
 const StyledBuildControls = styled.div`
   width: 100%;
@@ -33,6 +34,9 @@ const buildControls = ( props ) => {
           disabled={props.disabledInfo[control.type]}
         />
       ))}
+        <Button
+          disabled={!props.purchasable}
+          clicked={props.ordered}>Order NOW</Button>
     </StyledBuildControls>
   )
 };
