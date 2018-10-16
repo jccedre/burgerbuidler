@@ -1,15 +1,16 @@
 import React from 'react';
 import Aux from '../../hoc/Aux';
 import styled from 'styled-components';
+import Toolbar from '../Navigation/Toolbar/Toolbar';
 
 const StyledMain = styled.main`
-  margin-top: 1em;
+  margin-top: calc(1em + 56px);
   padding: 1em;
 `;
 
 const layout = ( props ) => (
   <Aux>
-    <div>toolbar, sidedrawer, backdrop</div>
+    <Toolbar />
     <StyledMain>
       {props.children}
     </StyledMain>

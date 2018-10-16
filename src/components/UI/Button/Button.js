@@ -19,6 +19,7 @@ color: ${props => props.theme.colors.white};
 padding: 0.5em 1em;
 border: none;
 font-size: 1.2em;
+margin: 0.5em 1em;
 box-shadow: 2px 2px 2px ${props => {
   if (props.type === 'success') {
      return props.theme.colors.greenActive;
@@ -44,11 +45,27 @@ transition: background 0.3s;
 }
 
 &:active {
-  background-color: ${props => props.theme.colors.azureActive};
+  background-color: ${props => {
+    if (props.type === 'success') {
+       return props.theme.colors.greenActive;
+    } else if (props.type === 'danger') {
+      return props.theme.colors.rubyActive;
+    } else {
+      return props.theme.colors.azureActive;
+    }
+  }};
 }
 
 &:disabled {
-  background-color: ${props => props.theme.colors.azureDisabled};
+  background-color: ${props => {
+    if (props.type === 'success') {
+       return props.theme.colors.greenDisabled;
+    } else if (props.type === 'danger') {
+      return props.theme.colors.rubyDisabled;
+    } else {
+      return props.theme.colors.azureDisabled;
+    }
+  }};
   cursor: not-allowed;
 }
 

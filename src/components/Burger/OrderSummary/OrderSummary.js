@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Aux from '../../../hoc/Aux';
+import Button from '../../UI/Button/Button';
 
 const StyledList = styled.ul`
   list-style: none;
@@ -28,9 +29,10 @@ const orderSummary = ( props ) => {
       <StyledList>
         {ingredientSummary}
       </StyledList>
+      <p><strong>Total Price: ${props.price.toFixed(2)}</strong></p>
       <p>Continue to Checkout?</p>
-      <button>CANCEL</button>
-      <button>CONTINUE</button>
+      <Button type="danger" clicked={props.purchaseCancelled}>CANCEL</Button>
+      <Button type="success" clicked={props.purchaseContinued}>CONTINUE</Button>
     </Aux>
   );
 };
