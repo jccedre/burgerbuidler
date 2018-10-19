@@ -7,9 +7,14 @@ const StyledNavigationItems = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
-  flex-flow: row wrap;
   align-items: center;
   height: 100%;
+  flex-flow: column;
+
+
+  ${props => props.theme.media.medium`
+    flex-flow: row wrap;
+  `};
 `;
 
 const navigationItems = ( props ) => {

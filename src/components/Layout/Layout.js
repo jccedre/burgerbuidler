@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import styled from 'styled-components';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
@@ -9,14 +9,38 @@ const StyledMain = styled.main`
   padding: 1em;
 `;
 
-const layout = ( props ) => (
-  <Aux>
-    <Toolbar />
-    <SideDrawer />
-    <StyledMain>
-      {props.children}
-    </StyledMain>
-  </Aux>
-);
+class Layout extends Component {
+  constructor(props) {
+    super(props);
 
-export default layout;
+    this.state = {
+      showSideDrawer: false,
+    }
+  }
+
+  sideDrawerClosedHandler = () => {
+    this.setState({showSideDrawer: false});
+  }
+
+  toggleSideDrawerHandler = () => {
+    this.setState((prevState) => {
+      return {showSideDrawer: !prevState.showSideDrawer};
+    });
+  }
+
+
+  render() {
+      return(
+        <Aux>
+          <Toolbar toggleSideDrawer={this.toggleSideDrawerHandler}/>
+          <SideDrawer closed={this.sideDrawerClosedHandler}
+          open={this.state.showSideDrawer} />
+          <StyledMain>
+            {this.props.children}
+          </StyledMain>
+        </Aux>
+      );
+  }
+}
+
+export default Layout;

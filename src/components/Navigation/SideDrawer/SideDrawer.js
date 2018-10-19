@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import Backdrop from '../../UI/Backdrop/Backdrop';
+import Aux from '../../../hoc/Aux';
 
 const StyledSideDrawer = styled.div`
   position: fixed;
@@ -11,13 +13,13 @@ const StyledSideDrawer = styled.div`
   left: 0;
   top: 0;
   z-index: 200;
-  background-color: ${props => props.theme.colors.white};
-  padding: 2em 1em;
+  background-color: ${props => props.theme.colors.sapphireBlue};
+  padding: 2em 0;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
 
 
-  ${props => props.theme.media.largeSmall`
+  ${props => props.theme.media.medium`
     display: none;
   `}
 
@@ -30,13 +32,23 @@ const StyledSideDrawer = styled.div`
 `;
 
 const sideDrawer = ( props ) => {
+  let status = 'close';
+
+  if (props.open) {
+    status = 'open';
+  } else {
+    status = 'close';
+  }
   return(
-      <StyledSideDrawer status={props.status}>
+    <Aux>
+      <Backdrop show={props.open} clicked={props.closed}/>
+      <StyledSideDrawer status={status}>
         <Logo height="11%"/>
         <nav>
           <NavigationItems />
         </nav>
       </StyledSideDrawer>
+    </Aux>
   );
 };
 

@@ -8,10 +8,20 @@ const StyledLogo = styled.div`
   height: ${props => props.height ? props.height : '100%'};
   box-sizing: border-box;
   border-radius: 5px;
+  max-width: 60px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 
   & img {
     height: 100%;
   }
+
+  ${props => props.theme.media.medium`
+    padding: 0.5em;
+    max-width: 100%;
+    display: block;
+  `};
 `;
 
 const logo = ( props ) => {
