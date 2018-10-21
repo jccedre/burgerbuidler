@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Aux from '../../../hoc/Aux';
 import Backdrop from '../Backdrop/Backdrop';
@@ -66,17 +66,28 @@ const StyledCloseIcon = styled.div`
   }
 `;
 
-const modal = ( props ) => {
-  return (
-    <Aux>
-      <Backdrop clicked={props.modalClosed} show={props.show} />
-      <StyledModal show={props.show}>
-        <StyledCloseIcon onClick={props.modalClosed}/>
-        {props.children}
-      </StyledModal>
-    </Aux>
+class Modal extends Component {
 
-  );
-};
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.show !== this.props.show;
+  }
 
-export default modal;
+  componentWillUpdate() {
+    console.log('Modal Will Update');
+  }
+
+  render() {
+    return (
+      <Aux>
+        <Backdrop clicked={this.props.modalClosed} show={this.props.show} />
+        <StyledModal show={this.props.show}>
+          <StyledCloseIcon onClick={this.props.modalClosed}/>
+          {this.props.children}
+        </StyledModal>
+      </Aux>
+
+    );
+  }
+}
+
+export default Modal;
