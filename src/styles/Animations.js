@@ -14,8 +14,18 @@ const enable = keyframes`
   }
 `;
 
+const spinnerAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 const animations = {
   enable: enable,
+  spinnerAnimation: spinnerAnimation,
 }
 
 export default animations;
