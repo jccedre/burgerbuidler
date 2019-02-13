@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const StyledNavigationItem = styled.li`
   margin: 0.5em 0;
@@ -17,12 +18,12 @@ const StyledNavigationItem = styled.li`
   `};
 `;
 
-const StyledAnchor = styled.a`
+const StyledNavLink = styled(NavLink)`
   color: ${props => props.theme.colors.white};
   width: 100%;
   box-sizing: border-box;
   display: block;
-  background-color: ${props => props.active ? props.theme.colors.azureDisabled : '' };
+  background-color: '';
   transition: all 0.3s;
   padding: 1em;
   z-index: 100;
@@ -30,12 +31,25 @@ const StyledAnchor = styled.a`
 
   &:hover,
   &:focus {
-    background-color: ${props => props.active ? props.theme.colors.ruby : props.theme.colors.yellowOrange};
+    background-color: ${props => props.theme.colors.yellowOrange};
   }
 
   &:active {
-    background-color: ${props => props.active ? props.theme.colors.rubyActive : props.theme.colors.yellowOrangeActive};
+    background-color: ${props => props.theme.colors.yellowOrangeActive};
   }
+
+  &.active {
+      background-color: ${props => props.theme.colors.azureDisabled};
+
+      &:hover,
+      &:focus {
+        background-color: ${props => props.theme.colors.ruby};
+      }
+
+      &:active {
+        background-color: ${props => props.theme.colors.rubyActive};
+      }
+    }
 
   ${props => props.theme.media.medium`
     color: ${props => props.theme.colors.white};
@@ -49,10 +63,11 @@ const StyledAnchor = styled.a`
 const navigationItem = ( props ) => {
   return(
     <StyledNavigationItem>
-      <StyledAnchor
-        href={props.link}
-        active={props.active}>
-        {props.children}</StyledAnchor>
+      <StyledNavLink
+        to={props.link}
+        exact={props.exact}>
+        {props.children}
+      </StyledNavLink>
     </StyledNavigationItem>
   );
 };
